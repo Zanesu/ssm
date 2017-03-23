@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.txy.dao.RoleMapper">
+	<resultMap id="BaseResultMap" type="com.txy.model.Role">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<id column="name" jdbcType="VARCHAR" property="name" />
+		<result column="describle" jdbcType="VARCHAR" property="describle" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, describle
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="com.txy.model.RoleKey"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_role
+		where id = #{id,jdbcType=INTEGER}
+		and name =
+		#{name,jdbcType=VARCHAR}
+	</select>
+	<select id="getRoleByUid" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+		r.*
+		FROM
+		t_user_permission up1
+		LEFT JOIN t_permission p ON
+		up1.perid = p.id
+		LEFT JOIN t_permission_role pr ON pr.perid=p.id
+		LEFT
+		JOIN t_role r ON r.id=pr.role_id
+		WHERE up1.user_id=#{uid}
+
+	</select>
+
+
+
+	<delete id="deleteByPrimaryKey" parameterType="com.txy.model.RoleKey">
+		delete from t_role
+		where id = #{id,jdbcType=INTEGER}
+		and name = #{name,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.txy.model.Role">
+		insert into t_role (id, name,
+		describle
+		)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{describle,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.txy.model.Role">
+		insert into t_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="describle != null">
+				describle,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="describle != null">
+				#{describle,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.txy.model.Role">
+		update t_role
+		<set>
+			<if test="describle != null">
+				describle = #{describle,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+		and name = #{name,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.txy.model.Role">
+		update t_role
+		set
+		describle = #{describle,jdbcType=VARCHAR}
+		where id =
+		#{id,jdbcType=INTEGER}
+		and name = #{name,jdbcType=VARCHAR}
+	</update>
+
+
+</mapper>
