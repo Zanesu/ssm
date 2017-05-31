@@ -11,6 +11,8 @@ public interface IUserService {
 	public User getByUsername(String name);
 
 	void save(User user);
+	
+	void scaduleTest();
 
 	/**
 	 * 根据用户id获取该用户的权限
