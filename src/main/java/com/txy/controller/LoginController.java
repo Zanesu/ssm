@@ -34,39 +34,47 @@ public class LoginController {
 			EHCacheUtil.addToCache("aaa", "abc");
 			Object cacheElement = EHCacheUtil.getCacheElement("aaa");
 			System.out.println(cacheElement.toString() + "this is a line");
+			model.setViewName("/succes");
 		} catch (IncorrectCredentialsException e) {
 			msg = "登录密码错误. Password for account " + token.getPrincipal() + " was incorrect.";
 			model.addObject("message", msg);
 			System.out.println(msg);
+			model.setViewName("/login");
 		} catch (ExcessiveAttemptsException e) {
 			msg = "登录失败次数过多";
 			model.addObject("message", msg);
 			System.out.println(msg);
+			model.setViewName("/login");
 		} catch (LockedAccountException e) {
 			msg = "帐号已被锁定. The account for username " + token.getPrincipal() + " was locked.";
 			model.addObject("message", msg);
 			System.out.println(msg);
+			model.setViewName("/login");
 		} catch (DisabledAccountException e) {
 			msg = "帐号已被禁用. The account for username " + token.getPrincipal() + " was disabled.";
 			model.addObject("message", msg);
 			System.out.println(msg);
+			model.setViewName("/login");
 		} catch (ExpiredCredentialsException e) {
 			msg = "帐号已过期. the account for username " + token.getPrincipal() + "  was expired.";
 			model.addObject("message", msg);
 			System.out.println(msg);
+			model.setViewName("/login");
 		} catch (UnknownAccountException e) {
 			msg = "帐号不存在. There is no user with username of " + token.getPrincipal();
 			model.addObject("message", msg);
 			System.out.println(msg);
+			model.setViewName("/login");
 		} catch (UnauthorizedException e) {
 			msg = "您没有得到相应的授权！" + e.getMessage();
 			model.addObject("message", msg);
 			System.out.println(msg);
+			model.setViewName("/login");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			model.setViewName("/login");
 		}
-		model.setViewName("/succes");
 		return model;
 	}
 

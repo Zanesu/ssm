@@ -6,8 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.txy.dao.IUserDao;
 import com.txy.dao.RoleMapper;
+import com.txy.dao.UserMapper;
 import com.txy.model.Role;
 import com.txy.model.User;
 import com.txy.service.IUserService;
@@ -15,11 +15,11 @@ import com.txy.service.IUserService;
 @Service("userService")
 public class UserServiceImpl implements IUserService {
 	@Resource
-	private IUserDao userDao;
+	private UserMapper userDao;
 	@Resource
 	private RoleMapper roleDao;
 
-	public User getUserById(String userId) {
+	public User getUserById(int userId) {
 		// TODO Auto-generated method stub
 		return this.userDao.selectByPrimaryKey(userId);
 	}

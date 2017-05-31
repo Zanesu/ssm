@@ -74,7 +74,7 @@ public class SystemRealm extends AuthorizingRealm {
 
 		if (null != user) {
 			ShiroUser shiroUser = new ShiroUser(user);
-			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(shiroUser, user.getPassword(), this.getName());
+			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(shiroUser, user.getUserPwd(), this.getName());
 			return authcInfo;
 		}
 		return null;

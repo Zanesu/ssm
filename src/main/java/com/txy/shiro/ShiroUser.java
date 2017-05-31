@@ -32,7 +32,7 @@ public class ShiroUser implements Serializable {
 	public ShiroUser(User user) {
 		super();
 		this.name = user.getUserName();
-		this.id = user.getId();
+		this.id = user.getUserId() + "";
 	}
 
 	public ShiroUser(String username) {
