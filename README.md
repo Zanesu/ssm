@@ -6,3 +6,5 @@
  该框架已集成shiro和eache缓存架构
 
 框架支持sql语句输出，以及定时任务创建
+
+增加分页支持,调用实体类mypage和分页pagenation.jsp
